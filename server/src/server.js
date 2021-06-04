@@ -19,7 +19,7 @@ const parseStreamName = streamPath => {
 
 nms.on('prePublish', async (id, StreamPath, args) => {
   const streamName = parseStreamName(StreamPath)
-  console.log(`${streamName} has started streaming`)
+  console.log(`>>> [+] ${streamName} has started streaming`)
   if (args.streamKey && args.streamToken) {
     tokens[streamName] = {
       app: 'stream',
@@ -42,6 +42,7 @@ nms.on('prePublish', async (id, StreamPath, args) => {
 })
 
 nms.on('postPublish', async (_id, StreamPath, _args) => {
+  console.log(">>>>> postPublish", StreamPath);
   if (StreamPath.indexOf('hls_') != -1) {
     const name = StreamPath.split('/').pop()
     createPlaylist(name)
@@ -50,7 +51,7 @@ nms.on('postPublish', async (_id, StreamPath, _args) => {
 
 nms.on('donePublish', async (id, StreamPath, _args) => {
   const streamName = parseStreamName(StreamPath)
-  console.log(`${streamName} has stopped streaming...`)
+  console.log(`>>> [+] ${streamName} has stopped streaming...`)
   if (tokens[streamName]) {
     let session = nms.getSession(id)
     if (!isEmpty(process.env.PUBLISH_STOP_NOTIFY_URL)) {

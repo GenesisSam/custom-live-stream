@@ -12,7 +12,7 @@ module.exports = {
     mediaroot: process.env.MEDIA_ROOT || './medias/app/media',
   },
   relay: {
-    ffmpeg: process.env.FFMPEG_PATH || '/usr/bin/ffmpeg',
+    ffmpeg: process.env.FFMPEG_PATH || '/usr/local/bin/ffmpeg',
     tasks: [
       {
         app: 'stream',
@@ -37,7 +37,7 @@ module.exports = {
     ],
   },
   trans: {
-    ffmpeg: '/usr/bin/ffmpeg',
+    ffmpeg: '/usr/local/bin/ffmpeg',
     tasks: [
       {
         app: 'hls_1080p',

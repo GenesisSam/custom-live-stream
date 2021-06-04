@@ -12,11 +12,14 @@ const template = name => {
 
 module.exports = name => {
   return new Promise((resolve, reject) => {
+    console.log(">>>>>>> 1111")
     mkdirp(`${process.env.MEDIA_ROOT}/live`, dirErr => {
       if (dirErr) {
+        console.log(">>>>>>> 3333")
         reject(dirErr.message)
         return
       }
+      console.log(">>>>>>> 2222")
       const playlist = `${process.env.MEDIA_ROOT}/live/${name}.m3u8`
       fs.open(playlist, 'w', (err, fd) => {
         if (err) {
